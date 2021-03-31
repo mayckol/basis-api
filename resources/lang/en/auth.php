@@ -15,6 +15,8 @@ return [
 
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
+    'undefined' => 'Something went wrong on the server.',
+    'logout_successfully' => 'Logout successful',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];
