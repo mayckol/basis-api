@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Http;
 
 class AuthController extends Controller
 {
@@ -24,20 +23,22 @@ class AuthController extends Controller
         ]);
         $accessToken = $user->createToken('authToken')->accessToken;
 
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+        return response(['user' => $user, 'access_token' => $accessToken]);
     }
 
     public function login(Request $request)
     {
-        $authData = $request->validate([
-            'email' => 'required|string|email|max:255',
-            'password' => 'required|string|min:6',
+        $loginData = $request->validate([
+            'email' => 'email|required',
+            'password' => 'required'
         ]);
-        if (!auth()->attempt($authData)) {
-            return response(['message' => 'Invalid credentials']);
+        if (!auth()->attempt($loginData)) {
+            return response(['message' => 'Invalid Credentials']);
         }
+
         $accessToken = auth()->user()->createToken('authToken')->accessToken;
-        return response(['user' => auth()->user(), 'access_token' => $accessToken]);
+
+        return response(['user' => auth()->user(), 'access_token' => $accessToken], 202);
     }
 
     public function logout()
@@ -47,5 +48,10 @@ class AuthController extends Controller
         });
 
         return response()->json(trans('auth.logout_successfully'), 200);
+    }
+
+    public function checkUserPermissions($id): bool
+    {
+        return auth()->guard('api')->user()->id == $id;
     }
 }
