@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
@@ -47,10 +47,10 @@ class User extends Authenticatable
     ];
 
     /**
-     * @return HasMany
+     * @return HasManyThrough
      */
-    public function tasks(): HasMany
+    public function tasks(): HasManyThrough
     {
-        return $this->hasMany(UserTask::class);
+        return $this->hasManyThrough(Task::class, UserTask::class, 'user_id', 'id', null, 'task_id');
     }
 }
