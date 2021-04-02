@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -48,6 +49,11 @@ class AuthController extends Controller
         });
 
         return response()->json(trans('auth.logout_successfully'), 200);
+    }
+
+    public function getUserInfo()
+    {
+        return response(['user' => auth()->guard('api')->user()], 200);
     }
 
     public function checkUserPermissions($id): bool
