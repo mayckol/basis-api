@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Task\Store;
+use App\Http\Requests\Task\Update;
+use App\Models\Task;
 use App\Models\UserTask;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\JsonResponse;
@@ -14,6 +17,11 @@ use Illuminate\Http\Request;
  */
 class TaskController extends Controller
 {
+    /**
+     * @var Task
+     */
+    private $task;
+
     /**
      * @var UserTask
      */
@@ -28,9 +36,10 @@ class TaskController extends Controller
      * @param UserTask $userTask
      * @param Task $task
      */
-    public function __construct(UserTask $userTask)
+    public function __construct(UserTask $userTask, Task $task)
     {
         $this->userTask = $userTask;
+        $this->task = $task;
         $this->user = auth()->guard('api')->user();
     }
 
@@ -48,10 +57,10 @@ class TaskController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param Request $request
+     * @param Store $request
      * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(Store $request)
     {
         $task = $this->task->create($request->all());
         $this->userTask->create([
@@ -66,7 +75,7 @@ class TaskController extends Controller
      * @param $id
      * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(Update $request, $id)
     {
         $task = $this->user->tasks->where('id', $id)->first();
 
