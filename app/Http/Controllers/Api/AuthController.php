@@ -55,9 +55,4 @@ class AuthController extends Controller
     {
         return response(['user' => auth()->guard('api')->user()], 200);
     }
-
-    public function checkUserPermissions($id): bool
-    {
-        return auth()->guard('api')->user()->id == $id;
-    }
 }
