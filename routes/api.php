@@ -19,7 +19,6 @@ Route::middleware('auth:api')->group(function () {
         return $request->user();
     });
     Route::post('/auth/logout', [\App\Http\Controllers\Api\AuthController::class, 'logout']);
-    Route::get('/user-info', [\App\Http\Controllers\Api\AuthController::class, 'getUserInfo']);
     Route::resource('tasks', \App\Http\Controllers\Api\TaskController::class)->only([
         'index', 'store', 'update', 'destroy',
     ]);
