@@ -26,6 +26,7 @@ class Store extends FormRequest
     {
         return [
             'task_type_id' => 'required|exists:task_types,id',
+            'title' => 'required|string|max:255',
             'status' => ['sometimes', Rule::in(array_keys(config('tasks.status')))],
             'obs' => 'nullable|string|max:255',
         ];

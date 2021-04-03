@@ -26,6 +26,7 @@ class Update extends FormRequest
     {
         return [
             'task_type_id' => 'nullable|exists:task_types,id',
+            'title' => 'required|string|max:255',
             'status' => ['nullable', Rule::in(array_keys(config('tasks.status')))],
             'obs' => 'nullable|string|max:255',
             'id' => 'required|exists:tasks,id',

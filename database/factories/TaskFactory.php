@@ -29,8 +29,9 @@ class TaskFactory extends Factory
         $taskTypeId = TaskType::all()->random(1)->first()->id;
         $countTaskStatusTypes = count(config('tasks.status'));
 
-         return [
+        return [
             'task_type_id' => $taskTypeId,
+            'title' => $this->faker->name(),
             'status' => rand(1, $countTaskStatusTypes),
             'obs' => $this->faker->text(),
         ];

@@ -89,7 +89,7 @@ class TaskController extends Controller
             $this->returnInvalidTaskResponse();
         }
 
-        return response()->json($taskUpdated, 200);
+        return response()->json($task, 200);
     }
 
     /**
