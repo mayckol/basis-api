@@ -11,13 +11,13 @@ mais rápida, caso contrário será necessário configurar todos apontamentos de
 
 $``git clone https://github.com/laradock/laradock``
 
-### 2-Clonar imagem “basisFrontVue2”
+### 2-Clonar imagem basis-front
 
-$``git clone git@github.com:mayckol/basisFrontVue2.git``
+$``git clone git@github.com:mayckol/basis-front.git``
 
-### 3-Clonar imagem “basis”
+### 3-Clonar imagem “basis-api”
 
-$``git clone git@github.com:mayckol/basis.git``
+$``git clone git@github.com:mayckol/basis-api.git``
 
 _____________________________________________________________________________ 
 
