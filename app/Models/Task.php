@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * Class Task
  * @package App\Models
  */
+
 class Task extends Model
 {
     use HasFactory, SoftDeletes;
