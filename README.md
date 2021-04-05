@@ -1,3 +1,10 @@
+Incialmente é necessário configurar o vhost para:
+
+```127.0.0.1 test.basis.com```
+
+# Essa configuração é mais indicada se já existir as imagens do laradock no computador, caso não tenha recomendo seguir os passos de instalação no link 
+https://github.com/mayckol/basis-docker/blob/main/README.md
+
 Aconselhável criar um diretório raiz pois serão clonadas 3 imagens que precisam estar no mesmo nível para uma instalação
 mais rápida, caso contrário será necessário configurar todos apontamentos dentro de cada imagem (.env)
 
@@ -68,6 +75,7 @@ $```cd ../laradock/```
 #### Atenção ao escolher as imagens corretas, pois existem muitas outras que poderão ser construídas caso não seja especificado.
 
 ### Na primeira vez o processo poderá demorar um pouco
+
 $```docker-compose up -d nginx mysql phpmyadmin```
 
 http://test.basis.com:80 Api
