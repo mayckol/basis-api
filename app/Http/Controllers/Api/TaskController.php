@@ -80,13 +80,13 @@ class TaskController extends Controller
         $task = $this->user->tasks->where('id', $id)->first();
 
         if (!$task) {
-            $this->returnInvalidTaskResponse();
+            return $this->returnInvalidTaskResponse();
         }
 
         $taskUpdated = $task->update($request->all());
 
         if (!$taskUpdated) {
-            $this->returnInvalidTaskResponse();
+            return $this->returnInvalidTaskResponse();
         }
 
         return response()->json($task, 200);
@@ -106,8 +106,8 @@ class TaskController extends Controller
             ->where('user_id', $this->user->id)
             ->first();
 
-        if (!$task || $userTask) {
-            $this->returnInvalidTaskResponse();
+        if (!$task || !$userTask) {
+            return $this->returnInvalidTaskResponse();
         }
 
         $userTask->delete();
